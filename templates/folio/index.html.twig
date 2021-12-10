@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello FolioController!{% endblock %}
+
+{% block body %}
+<section class="articles">
+{% for project in projects %}
+  <article>
+      <h2>{{project.title}}</h2>
+      <div class="metadata">Rédigé dans la catégorie front end</div>
+      <div class="content">
+          <img src="{{project.image}}" alt="">
+          {{project.description | raw}}
+          <a href="{{project.github}}">Github</a>
+          <a href="{{project.weblink}}">Weblink</a>
+          
+          <a href="{{path('project_show', {'id': project.id})}}" class="btn btn-primary">Lire la suite</a>
+      </div>
+  </article>
+   {% endfor %}
+</section>
+
+{% endblock %}
