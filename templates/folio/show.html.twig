@@ -2,16 +2,27 @@
 {% block body %}
 <article>
       <h2>{{project.title}}</h2>
-      <div class="metadata">Rédigé dans la catégorie front end</div>
+      	<div class="metadata">Catégories :
+					{% for category in project.categories %}
+						<p>{{ category.title }}</p>
+					{% endfor %}
+				</div>
        <div class="content">
-          <img src="{{project.image}}" alt="">
+          {% if project.filename %}
+            <img src="{{ vich_uploader_asset(project, 'imageFile') }}" alt="" style="width:100%; height:auto;">
+
+          {% endif %}
+          
+          <img src="{{project.imageFile}}" alt="">
           {{project.description | raw}}
           <a href="{{project.github}}">Github</a>
           <a href="{{project.weblink}}">Weblink</a>
           {% if app.user %}
             <a href="{{path('folio_edit', {'id': project.id})}}" class="btn btn-primary">Modifier le projet</a>
             <a href="{{path('folio_delete', {'id': project.id})}}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Supprimer le projet</a>          
-            {% endif %}      
+          {% else %}
+            <p>Il faut être connecté pour modifier ou supprimer un projet</p>
+          {% endif %}      
       </div>
   </article>
 {% endblock %}

@@ -10,21 +10,29 @@
 		{% endif %}
 
 	</h1>
+
 	{{ form_start(formProject) }}
+	
+		{{ form_row(formProject.title, {'attr' : {'placeholder': "Titre du projet"}}) }}
+	
+		{{ form_row(formProject.categories) }}
+	
+		{{ form_row(formProject.description, {'attr' : {'placeholder': "Description du projet"}}) }}
+	
+		{{ form_row(formProject.imageFile) }}
 
-	{{ form_row(formProject.title, {'attr' : {'placeholder': "Titre du projet"}}) }}
-	{{ form_row(formProject.description, {'attr' : {'placeholder': "Description du projet"}}) }}
-	{{ form_row(formProject.image, {'attr' : {'placeholder': "URL de l'image"}}) }}
-	{{ form_row(formProject.github, {'attr' : {'placeholder': "Github du projet"}}) }}
-	{{ form_row(formProject.weblink, {'attr' : {'placeholder': "Weblink du projet"}}) }}
-	<button type="submit" class="btn btn-success">
-		{% if editMode %}
-			Enregistrer les modifications
-		{% else %}
-			Ajouter le projet
-		{% endif %}
+		{{ form_row(formProject.github, {'attr' : {'placeholder': "Github du projet"}}) }}
+	
+		{{ form_row(formProject.weblink, {'attr' : {'placeholder': "Weblink du projet"}}) }}
+	
+		<button type="submit" class="btn btn-success">
+			{% if editMode %}
+				Enregistrer les modifications
+			{% else %}
+				Ajouter le projet
+			{% endif %}
 
-	</button>
+		</button>
 
 	{{ form_end(formProject) }}
 

@@ -10,6 +10,8 @@ class ProjectFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
+     
+
       for ($i=1; $i <= 10 ; $i++) { 
           $project = new Project();
           $project->setTitle("Titre du projet n°$i")
@@ -19,7 +21,6 @@ class ProjectFixtures extends Fixture
                   ->setWeblink("Weblink du projet n°$i");
                   $manager->persist($project);
       }
-
         $manager->flush();
     }
 }

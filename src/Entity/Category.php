@@ -30,7 +30,7 @@ class Category
     private $description;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Project::class)
+     * @ORM\ManyToMany(targetEntity=Project::class, mappedBy="categories")
      */
     private $projects;
 
@@ -80,6 +80,7 @@ class Category
     {
         if (!$this->projects->contains($project)) {
             $this->projects[] = $project;
+            $project->addCategory($this);
         }
 
         return $this;
@@ -87,7 +88,9 @@ class Category
 
     public function removeProject(Project $project): self
     {
-        $this->projects->removeElement($project);
+        if ($this->projects->removeElement($project)) {
+            $project->removeCategory($this);
+        }
 
         return $this;
     }
